@@ -1,0 +1,18 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: auth-service
+  redis:
+    host: 10.102.36.153
+    port: 26379
+    timeout: 2000
+    database: 1
+    password: tttt
+logging:
+  level:
+    root: debug    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://center1:8081/eureka/,http://center2:8082/eureka/
