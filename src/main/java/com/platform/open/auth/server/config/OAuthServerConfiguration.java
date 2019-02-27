@@ -25,12 +25,14 @@ public class OAuthServerConfiguration extends AuthorizationServerConfigurerAdapt
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.allowFormAuthenticationForClients().passwordEncoder(NoOpPasswordEncoder.getInstance());
+		security.checkTokenAccess("permitAll");
 	}
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("client_1").secret("123456")
-				.authorizedGrantTypes("client_credentials", "password").scopes("query", "createOrder", "server");
+				.authorizedGrantTypes("client_credentials", "password").scopes("query", "createOrder", "server").and()
+				.withClient("client_2").secret("123456").authorizedGrantTypes("client_credentials").scopes("server");
 	}
 
 	@Override

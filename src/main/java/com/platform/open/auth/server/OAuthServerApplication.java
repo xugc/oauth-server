@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -16,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableResourceServer
 public class OAuthServerApplication {
 
-	@GetMapping("/user/{client}")
-	public String getUserInfo(Principal principal, @PathVariable("client") String client) {
-		System.out.println(client);
-		return principal.getName();
+	@GetMapping("/user")
+	public Principal getUserInfo(Principal principal) {
+		return principal;
 	}
 
 	public static void main(String[] args) {
